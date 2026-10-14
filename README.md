@@ -2,6 +2,10 @@
 
 Landing page demonstrativa de um petshop fictício especializado em banho e tosa, desenvolvida para o portfólio da **Ghati Inovações**.
 
+**Site publicado:** https://mimo-de-pata-ghati.vercel.app
+
+**Repositório:** https://github.com/ghatinovacoes-collab/mimo-de-pata-ghati
+
 ## Execução
 
 Requer Node.js 20 ou superior. Não há dependências de produção, framework ou backend.

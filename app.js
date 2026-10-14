@@ -95,12 +95,32 @@ document.getElementById('copy-message').addEventListener('click', async () => {
 });
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const floatingContact = document.querySelector('.floating-contact');
+const protectedContent = [...document.querySelectorAll('main p, main h1, main h2, main h3, main a, main button, main summary, main input, main select, main textarea, main label')];
+let floatingFrame = 0;
+function positionFloatingContact() {
+  if (floatingFrame) return;
+  floatingFrame = requestAnimationFrame(() => {
+    floatingFrame = 0;
+    if (floatingContact.hidden) return;
+    const area = floatingContact.getBoundingClientRect();
+    const obscuresContent = protectedContent.some(element => {
+      const r = element.getBoundingClientRect();
+      return r.width > 0 && r.height > 0 && r.left < area.right && r.right > area.left && r.top < area.bottom && r.bottom > area.top;
+    });
+    floatingContact.classList.toggle('obscured', obscuresContent);
+  });
+}
+window.addEventListener('scroll', positionFloatingContact, { passive: true });
+window.addEventListener('resize', positionFloatingContact);
+positionFloatingContact();
 if ('IntersectionObserver' in window) {
   const visibleSections = new Set();
   const floating = document.querySelector('.floating-contact');
   const contactObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => { if (entry.isIntersecting) visibleSections.add(entry.target); else visibleSections.delete(entry.target); });
     floating.hidden = visibleSections.size > 0;
+    positionFloatingContact();
   });
   contactObserver.observe(document.getElementById('contato'));
   contactObserver.observe(document.querySelector('.footer'));

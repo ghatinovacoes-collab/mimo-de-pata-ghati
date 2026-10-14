@@ -1,0 +1,8 @@
+dist/
+.vercel/
+node_modules/
+.env*
+test-results/
+
+.vercel
+.env*

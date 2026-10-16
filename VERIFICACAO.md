@@ -37,3 +37,9 @@ Projeto Vercel próprio: `ghata/mimo-de-pata-ghati`, plano Hobby. Não houve con
 Repositório: https://github.com/ghatinovacoes-collab/mimo-de-pata-ghati
 
 O envio para o GitHub usa a sessão de navegador autorizada pelo usuário, pois o Git local e o conector estão autenticados em outra conta. O projeto não inclui credenciais nem arquivos `.env` ou `.vercel`.
+
+## Correção das setas em iPhone
+
+As setas de texto foram substituídas por desenhos SVG em toda a interface e nos créditos, incluindo o ícone criado após a mudança de serviço. O desenho usa `stroke: currentColor`, sem depender de glifos ou fontes de emoji. Os SVGs decorativos têm `aria-hidden="true"` e `focusable="false"`.
+
+A jornada foi novamente verificada no Chromium em telas pequenas e grandes, sem regressão de layout ou interação. O formato vetorial elimina a conversão dos caracteres de seta em emoji. Não foi realizado teste em iPhone físico.
